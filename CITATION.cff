@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: >-
+  If you use this database, cite the original source of each dataset you use
+  (see datasets/<id>/dataset.yaml). You may also cite the database itself.
+title: Cold-Formed Steel Imperfection Database
+type: dataset
+authors:
+  - name: EngineerWithData
+repository-code: https://github.com/EngineerWithData/cfs-imperfections
+license: MIT
+references:
+  - type: thesis
+    title: A Framework for Cyclic Simulation of Thin-Walled Cold-Formed Steel Members in Structural Systems
+    authors:
+      - family-names: Padilla-Llano
+        given-names: D.
+    year: 2015
+    institution:
+      name: Virginia Tech
+    thesis-type: Ph.D. Dissertation
+    url: http://hdl.handle.net/10919/52904

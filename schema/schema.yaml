@@ -1,0 +1,69 @@
+# Shared schema for every dataset in datasets/*/processed/.
+# tools/validate.py enforces this file; SCHEMA.md explains it in prose.
+# Change it only by pull request, and bump `version` when you do.
+
+version: 1.0.0
+
+vocabularies:
+  member_type: [column, beam]
+  target_buckling_mode: [global, distortional, local]
+  loading_protocol: [monotonic, cyclic, none]
+  method: [manual, photogrammetry, laser_scan, other]
+  imperfection_type: [bow, camber, twist, local_web, distortional_flange]
+  location: [member, web, east_flange, west_flange]
+  unit: [mm, rad]
+
+tables:
+  specimens:
+    file: specimens.csv
+    primary_key: [dataset_id, specimen_id]
+    columns:
+      dataset_id:           {type: string, required: true}
+      specimen_id:          {type: string, required: true}
+      section:              {type: string, required: true}
+      member_type:          {type: string, required: true, vocabulary: member_type}
+      target_buckling_mode: {type: string, required: false, vocabulary: target_buckling_mode}
+      loading_protocol:     {type: string, required: false, vocabulary: loading_protocol}
+      length_mm:            {type: number, required: true, min: 0}
+      web_depth_mm:         {type: number, required: false, min: 0}
+      flange_width_east_mm: {type: number, required: false, min: 0}
+      flange_width_west_mm: {type: number, required: false, min: 0}
+      thickness_mm:         {type: number, required: false, min: 0}
+      notes:                {type: string, required: false}
+
+  measurements:
+    file: measurements.csv
+    foreign_key: {columns: [dataset_id, specimen_id], references: specimens}
+    columns:
+      dataset_id:        {type: string, required: true}
+      specimen_id:       {type: string, required: true}
+      measurement_set:   {type: string, required: true}
+      method:            {type: string, required: true, vocabulary: method}
+      imperfection_type: {type: string, required: true, vocabulary: imperfection_type}
+      location:          {type: string, required: true, vocabulary: location}
+      processing:        {type: string, required: true}
+      z_mm:              {type: number, required: true}
+      z_over_L:          {type: number, required: true}
+      value:             {type: number, required: true}
+      unit:              {type: string, required: true, vocabulary: unit}
+      source_field:      {type: string, required: true}
+
+  point_clouds:
+    file: point_clouds.csv
+    optional: true
+    foreign_key: {columns: [dataset_id, specimen_id], references: specimens}
+    columns:
+      dataset_id:      {type: string, required: true}
+      specimen_id:     {type: string, required: true}
+      measurement_set: {type: string, required: true}
+      x_mm:            {type: number, required: true}
+      y_mm:            {type: number, required: true}
+      z_mm:            {type: number, required: true}
+
+# Which (imperfection_type, location) pairs are allowed together, and the unit each must use.
+pairings:
+  bow:                 {locations: [member], unit: mm}
+  camber:              {locations: [member], unit: mm}
+  twist:               {locations: [member], unit: rad}
+  local_web:           {locations: [web], unit: mm}
+  distortional_flange: {locations: [east_flange, west_flange], unit: mm}

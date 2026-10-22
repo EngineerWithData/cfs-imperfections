@@ -1,0 +1,22 @@
+id: padilla-llano-2015
+title: Measured geometric imperfections of cold-formed steel lipped channel columns and beams
+authors:
+  - name: D. Padilla-Llano
+    affiliation: Virginia Tech
+    github: dpadilla-llano
+year: 2015
+citation: >-
+  D. Padilla-Llano (2015). A Framework for Cyclic Simulation of Thin-Walled Cold-Formed
+  Steel Members in Structural Systems. Ph.D. Dissertation, Virginia Tech.
+  http://hdl.handle.net/10919/52904
+source_url: http://hdl.handle.net/10919/52904
+license: MIT
+contact: https://github.com/dpadilla-llano
+original_units: {length: in, rotation: rad}
+original_format: MATLAB 5.0 MAT-file (2012-2014)
+methods:
+  manual: Dial gages read against a precision rail
+  photogrammetry: Imperfections computed from photogrammetry point clouds (getImp4)
+specimens:
+  columns: 29   # axial; all manual (31 manual sets, 2 specimens measured twice), 9 also photogrammetry
+  beams: 24     # flexural; all manual, 11 also photogrammetry
