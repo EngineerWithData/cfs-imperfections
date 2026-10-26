@@ -7,7 +7,7 @@ type: dataset
 authors:
   - name: EngineerWithData
 repository-code: https://github.com/EngineerWithData/cfs-imperfections
-license: MIT
+license: CC-BY-4.0
 references:
   - type: thesis
     title: A Framework for Cyclic Simulation of Thin-Walled Cold-Formed Steel Members in Structural Systems

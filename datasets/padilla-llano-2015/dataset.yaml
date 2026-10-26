@@ -10,7 +10,7 @@ citation: >-
   Steel Members in Structural Systems. Ph.D. Dissertation, Virginia Tech.
   http://hdl.handle.net/10919/52904
 source_url: http://hdl.handle.net/10919/52904
-license: MIT
+license: CC-BY-4.0
 contact: https://github.com/dpadilla-llano
 original_units: {length: in, rotation: rad}
 original_format: MATLAB 5.0 MAT-file (2012-2014)
